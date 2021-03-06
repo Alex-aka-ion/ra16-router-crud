@@ -1,7 +1,7 @@
 import Post from "./Post";
 import CreateEditPage from "./CreateEditPage";
 import React, {useState} from "react";
-import {Redirect, useParams} from "react-router-dom";
+import {Link, Redirect, useParams} from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
 export default function ViewEditPage() {
@@ -18,9 +18,9 @@ export default function ViewEditPage() {
         e.preventDefault();
         //DELETE на адрес http://localhost:7777/posts/{id}
         doFetch({
+            method: 'DELETE',
             url: `/posts/${id}`,
             redirect: true,
-            method: 'DELETE',
         });
 
     }
@@ -36,11 +36,16 @@ export default function ViewEditPage() {
     return (
         <>
             {!actionEdit ?
-                <div>
+                <>
                     <Post post={post}/>
-                    <button onClick={() => setActionEdit(true)}>Изменить</button>
-                    <button onClick={onDeletePost}>Удалить</button>
-                </div>
+                    <div className="card w-50">
+                        <div className="card-body text-right">
+                            <button className="btn btn-outline-info" onClick={() => setActionEdit(true)}>Изменить
+                            </button>
+                            <button className="btn btn-outline-danger" onClick={onDeletePost}>Удалить</button>
+                        </div>
+                    </div>
+                </>
                 :
                 <CreateEditPage post={post}/>
             }

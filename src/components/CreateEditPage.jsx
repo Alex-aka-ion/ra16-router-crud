@@ -26,15 +26,19 @@ export default function CreateEditPage({post}) {
         return <Redirect to={'/'}/>
 
     return (
-        <form onSubmit={onSave}>
-            <Link to={'/'}>
-                <button>X</button>
-            </Link>
-            <textarea onChange={onChange} value={text}></textarea>
-            {error && <p>Error {error}</p>}
-            {loading ? <p>Saving...</p> :
-                <button type="submit">{post ? 'Сохранить' : 'Опубликовать'}</button>
-            }
+        <form onSubmit={onSave} className="card w-50 text-right">
+            <div className="card-body form-group">
+                <Link to={'/'}>
+                    <button className="btn btn-outline-info">X</button>
+                </Link>
+                {error && <p>Error {error}</p>}
+                <div className="form-group">
+                    <textarea className="form-control" onChange={onChange} value={text}/>
+                </div>
+                {loading ? <p>Saving...</p> :
+                    <button type="submit" className="btn btn-primary">{post ? 'Сохранить' : 'Опубликовать'}</button>
+                }
+            </div>
         </form>
     );
 }

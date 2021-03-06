@@ -8,9 +8,13 @@ export default function ListPage() {
 
     return (
         <div>
-            <Link to={`/posts/new`}>
-                <button className="btn-primary">Создать пост</button>
-            </Link>
+            <div className="card w-50">
+                <div className="card-body text-right">
+                    <Link to={`/posts/new`}>
+                        <button className="btn btn-primary">Создать пост</button>
+                    </Link>
+                </div>
+            </div>
             {loading && <p>Loading</p>}
             {error && <p>Error {error}</p>}
             {posts.map((post) => <Post key={post.id} post={post}/>)}
